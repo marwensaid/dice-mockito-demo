@@ -1,9 +1,11 @@
 
 package god;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.util.Random;
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class DiceTest {
@@ -20,20 +22,24 @@ public class DiceTest {
 		}
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void identifyBadValuesGreaterThanNumberOfFaces() {
 		Random tooMuch = mock(Random.class);
 		when(tooMuch.nextInt(anyInt())).thenReturn(7);
 		theDice = new Dice(tooMuch);
-		theDice.roll();
+		assertThrows(RuntimeException.class, () -> {
+			theDice.roll();
+		} );
 	}
 	
-    @Test(expected = RuntimeException.class)
+    @Test
     public void identifyBadValuesLesserThanOne() {
         Random notEnough = mock(Random.class);
         when(notEnough.nextInt(anyInt())).thenReturn(-1);
         theDice = new Dice(notEnough);
-        theDice.roll();
+		assertThrows(RuntimeException.class, () -> {
+			theDice.roll();
+		} );
     }
 	
 

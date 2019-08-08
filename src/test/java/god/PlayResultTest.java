@@ -1,22 +1,25 @@
 package god;
 
-import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PlayResultTest {
 	
 	PlayResult pr1;
 	PlayResult pr2;
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 	  pr1 = new PlayResult(5);
 	  pr2 = new PlayResult(2);
 	}
 	
-	@Test 
+	@Test
 	public void testCompareTo() {
 		assertTrue(pr1.compareTo(pr2) > 0);
 		assertTrue(pr2.compareTo(pr1) < 0);
