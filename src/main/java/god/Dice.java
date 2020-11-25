@@ -15,8 +15,6 @@ public class Dice {
             throw new RuntimeException("Dice returns an incompatible value");
         return result;
     }
-    
-    
-    
-    
+
 }
+

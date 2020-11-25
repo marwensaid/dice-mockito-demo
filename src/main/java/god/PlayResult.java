@@ -23,7 +23,6 @@ public class PlayResult implements Comparable<PlayResult> {
 			return (value == ((PlayResult)obj).get());
 		return false;
 	}
-	
-	
 
 }
+
