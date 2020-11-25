@@ -11,8 +11,8 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <junit.jupiter.version>5.5.1</junit.jupiter.version>
-        <mockito.version>3.0.0</mockito.version>
+        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <mockito.version>3.6.0</mockito.version>
     </properties>
 
   <build>
@@ -32,17 +32,9 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- No dependency on JUnit 5 vintage to ensure we only use JUnit 5 features here -->
-        <!-- Add this dependency if you want to use mockito with cucumber 4.7.X -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency> <!-- needed for Mockito 2+ (and 3+) compatibility with JUnit 5 engine -->
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
