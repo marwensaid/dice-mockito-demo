@@ -2,15 +2,21 @@
 package god;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class DiceTest {
 
 	Dice theDice;
+
+	@Mock Random trickedRandom = mock(Random.class);
 
 	@Test
 	public void rollReturnsAValue() {
@@ -24,19 +30,17 @@ public class DiceTest {
 
 	@Test
 	public void identifyBadValuesGreaterThanNumberOfFaces() {
-		Random tooMuch = mock(Random.class);
-		when(tooMuch.nextInt(anyInt())).thenReturn(7);
-		theDice = new Dice(tooMuch);
+		when(trickedRandom.nextInt(anyInt())).thenReturn(7);
+		theDice = new Dice(trickedRandom);
 		assertThrows(RuntimeException.class, () -> {
 			theDice.roll();
 		} );
 	}
-	
-    @Test
+
+	@Test
     public void identifyBadValuesLesserThanOne() {
-        Random notEnough = mock(Random.class);
-        when(notEnough.nextInt(anyInt())).thenReturn(-1);
-        theDice = new Dice(notEnough);
+        when(trickedRandom.nextInt(anyInt())).thenReturn(-1);
+        theDice = new Dice(trickedRandom);
 		assertThrows(RuntimeException.class, () -> {
 			theDice.roll();
 		} );
