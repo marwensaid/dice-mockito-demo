@@ -9,6 +9,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,7 +40,7 @@ public class DiceTest {
 
 	@Test
     public void identifyBadValuesLesserThanOne() {
-        when(trickedRandom.nextInt(anyInt())).thenReturn(-1);
+        when(trickedRandom.nextInt(eq(Dice.FACES))).thenReturn(-1);
         theDice = new Dice(trickedRandom);
 		assertThrows(RuntimeException.class, () -> {
 			theDice.roll();

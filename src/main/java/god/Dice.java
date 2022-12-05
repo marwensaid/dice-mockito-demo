@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice {
 
-    private final static int FACES = 6;
+    public final static int FACES = 6;
     private Random rand;
 
     public Dice(Random rand) { this.rand = rand; }
