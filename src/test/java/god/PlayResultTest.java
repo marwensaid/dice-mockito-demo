@@ -15,23 +15,23 @@ public class PlayResultTest {
 	
 	@BeforeEach
 	public void setUp() {
-	  pr1 = new PlayResult(5);
-	  pr2 = new PlayResult(2);
+		this.pr1 = new PlayResult(5);
+		this.pr2 = new PlayResult(2);
 	}
 	
 	@Test
 	public void testCompareTo() {
-		assertTrue(pr1.compareTo(pr2) > 0);
-		assertTrue(pr2.compareTo(pr1) < 0);
-		assertTrue(pr1.compareTo(pr1) == 0);
-		assertTrue(pr1.compareTo(new PlayResult(5)) == 0);
+		assertTrue(this.pr1.compareTo(this.pr2) > 0);
+		assertTrue(this.pr2.compareTo(this.pr1) < 0);
+		assertEquals(0, this.pr1.compareTo(this.pr1));
+		assertEquals(0, this.pr1.compareTo(new PlayResult(5)));
 	}
 	
 	@Test
 	public void testEquals() {
-		assertEquals(pr1,pr1);
-		assertEquals(pr1,new PlayResult(5));
-		assertNotEquals(pr1,pr2);		
+		assertEquals(this.pr1, this.pr1);
+		assertEquals(this.pr1,new PlayResult(5));
+		assertNotEquals(this.pr1, this.pr2);
 	}
 
 }

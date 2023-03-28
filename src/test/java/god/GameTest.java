@@ -9,46 +9,46 @@ import static org.mockito.Mockito.*;
 
 public class GameTest {
 
-	Game g;
+	Game game;
 	
     @Test
     public void noWinnerAfter5Attempts() {
         Dice single = mock(Dice.class);
         when(single.roll()).thenReturn(1);
 
-        Player p1 =  spy(new Player("John", single));
-        Player p2 =  spy(new Player("Jane", single));
+        Player player1 =  spy(new Player(single));
+        Player player2 =  spy(new Player(single));
 
-        g = new Game(p1,p2);
-        assertFalse(g.play().isPresent());
-        verify(p1, times(5)).play();
-        verify(p2, times(5)).play();
+        this.game = new Game(player1,player2);
+        assertFalse(this.game.play().isPresent());
+        verify(player1, times(5)).play();
+        verify(player2, times(5)).play();
     }
 
 
     @Test
     public void andTheWinnerIsP1() {
 
-        Player p1 = mock(Player.class);
-        when(p1.getLastValue()).thenReturn(Optional.of(new PlayResult(5)));
+        Player player1 = mock(Player.class);
+        when(player1.getLastValue()).thenReturn(Optional.of(new PlayResult(5)));
 
-        Player p2 = mock(Player.class);
-        when(p2.getLastValue()).thenReturn(Optional.of(new PlayResult(2)));
+        Player player2 = mock(Player.class);
+        when(player2.getLastValue()).thenReturn(Optional.of(new PlayResult(2)));
 
-        g = new Game(p1,p2);
-        assertEquals(p1, g.play().get());
+        this.game = new Game(player1,player2);
+        assertEquals(player1, this.game.play().get());
     }
     
     @Test
     public void andTheWinnerIsP2() {
 
-        Player p1 = mock(Player.class);
-        when(p1.getLastValue()).thenReturn(Optional.of(new PlayResult(1)));
+        Player player1 = mock(Player.class);
+        when(player1.getLastValue()).thenReturn(Optional.of(new PlayResult(1)));
 
-        Player p2 = mock(Player.class);
-        when(p2.getLastValue()).thenReturn(Optional.of(new PlayResult(6)));
+        Player player2 = mock(Player.class);
+        when(player2.getLastValue()).thenReturn(Optional.of(new PlayResult(6)));
 
-        g = new Game(p1,p2);
-        assertEquals(p2, g.play().get());
+        this.game = new Game(player1,player2);
+        assertEquals(player2, this.game.play().get());
     }
 }

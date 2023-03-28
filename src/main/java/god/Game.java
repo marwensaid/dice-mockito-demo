@@ -4,8 +4,8 @@ import java.util.Optional;
 
 public class Game {
 
-    private Player left;
-    private Player right;
+    private final Player left;
+    private final Player right;
 
     public Game(Player left, Player right) {
         this.left = left;
@@ -15,13 +15,13 @@ public class Game {
     public Optional<Player> play() {
         int counter = 0;
         while(counter < 5) {
-            left.play();  PlayResult l = left.getLastValue().get();
-            right.play(); PlayResult r = right.getLastValue().get();
+            this.left.play();  PlayResult playResultLeft = this.left.getLastValue().get();
+            this.right.play(); PlayResult playResultRight = this.right.getLastValue().get();
 
-            int cmp = l.compareTo(r);
+            int cmp = playResultLeft.compareTo(playResultRight);
             
-            if(cmp > 0 )      { return Optional.of(left);  }
-            else if (cmp < 0) { return Optional.of(right); }
+            if(cmp > 0 )      { return Optional.of(this.left);  }
+            else if (cmp < 0) { return Optional.of(this.right); }
 
             counter++;
         }

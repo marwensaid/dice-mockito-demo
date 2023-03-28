@@ -3,23 +3,23 @@ import java.util.Optional;
 
 public class Player {
 
-    private String name;
-    private Dice dice;
+
+    private final Dice dice;
     private Optional<PlayResult> lastValue = Optional.empty();
 
-    public Player(String name, Dice dice) {
-        this.name = name;
+    public Player(Dice dice) {
+
         this.dice = dice;
     }
 
     public void play() {
-    	int a = dice.roll();
-    	int b = dice.roll();
+    	int a = this.dice.roll();
+    	int b = this.dice.roll();
         this.lastValue = Optional.of(new PlayResult(Math.max(a, b)));
     }
 
     public Optional<PlayResult> getLastValue() {
-        return lastValue;
+        return this.lastValue;
     }
 
 }

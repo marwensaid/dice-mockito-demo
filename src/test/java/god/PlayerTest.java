@@ -10,41 +10,41 @@ import static org.mockito.Mockito.*;
 
 public class PlayerTest {
 
-    Player p;
+    Player player;
     
     @Test
     public void lastValueNotInitialized() {
-        p = new Player("John Doe", new Dice(new Random()));
-        assertFalse(p.getLastValue().isPresent());
+        this.player = new Player(new Dice(new Random()));
+        assertFalse(this.player.getLastValue().isPresent());
     }
 
     @Test
     public void lastValueInitialized() {
-        p = new Player("John Doe", new Dice(new Random()));
-        p.play();
-        assertTrue(p.getLastValue().isPresent());
+        this.player = new Player(new Dice(new Random()));
+        this.player.play();
+        assertTrue(this.player.getLastValue().isPresent());
     }
 
     @Test
     public void throwDiceOnlyTwice() {
-        Dice d = mock(Dice.class);
-        p = new Player("John Doe", d);
-        p.play();
-        verify(d, times(2)).roll();
+        Dice dice = mock(Dice.class);
+        this.player = new Player(dice);
+        this.player.play();
+        verify(dice, times(2)).roll();
     }
     
     @Test
     public void keepTheMaximum() {
-        Dice d = mock(Dice.class);
-        p = new Player("John Doe", d);
+        Dice dice = mock(Dice.class);
+        this.player = new Player(dice);
 
-        when(d.roll()).thenReturn(2,5);
-        p.play();
-        assertEquals(p.getLastValue().get(), new PlayResult(5));
+        when(dice.roll()).thenReturn(2,5);
+        this.player.play();
+        assertEquals(this.player.getLastValue().get(), new PlayResult(5));
         
-        when(d.roll()).thenReturn(6).thenReturn(1);
-        p.play();
-        assertEquals(p.getLastValue().get(), new PlayResult(6));
+        when(dice.roll()).thenReturn(6).thenReturn(1);
+        this.player.play();
+        assertEquals(this.player.getLastValue().get(), new PlayResult(6));
         
     }
     
