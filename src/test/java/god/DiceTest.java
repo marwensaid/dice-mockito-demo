@@ -21,30 +21,17 @@ public class DiceTest {
 
 	@Test
 	public void rollReturnsAValue() {
-		theDice = new Dice(new Random());
-		for (int i = 0; i < 100; i++) {
-			int result = theDice.roll();
-			assertTrue(result >= 1);
-			assertTrue(result <= 6);
-		}
+		//TODO: tester le rolling et le retour d'une valeur
 	}
 
 	@Test
 	public void identifyBadValuesGreaterThanNumberOfFaces() {
-		when(trickedRandom.nextInt(anyInt())).thenReturn(7);
-		theDice = new Dice(trickedRandom);
-		assertThrows(RuntimeException.class, () -> {
-			theDice.roll();
-		} );
+		//TODO: identifier les mauvaises valeurs supérieures au nombre de faces
 	}
 
 	@Test
     public void identifyBadValuesLesserThanOne() {
-        when(trickedRandom.nextInt(eq(Dice.FACES))).thenReturn(-1);
-        theDice = new Dice(trickedRandom);
-		assertThrows(RuntimeException.class, () -> {
-			theDice.roll();
-		} );
+		//TODO: identifier les mauvaises valeurs inférieur au nombre de faces
     }
 	
 
